@@ -1,0 +1,12 @@
+version: '2'
+services:
+    api:
+      build:
+        context: .
+        dockerfile: ./deployment/local/Dockerfile
+      volumes: 
+        - .:/var/src
+      working_dir: /var/src
+      ports: 
+        - 3088:3088
+      command: npm run start:dev
