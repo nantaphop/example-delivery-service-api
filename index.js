@@ -8,12 +8,12 @@ const PORT = process.env.PORT || 3000
 
 console.info('Connecting to Mongodb')
 const mongoOpts = { useNewUrlParser: true, useUnifiedTopology: true }
-mongoose.connect(MONGO_CONNECTION, mongoOpts, (err) => {
-    console.info('Connected to Mongodb')
+mongoose.connect(MONGO_CONNECTION, mongoOpts, err => {
+  console.info('Connected to Mongodb')
 })
 
 require('./src/controllers/system/register')(app)
 
 const server = app.listen(PORT, () => {
-    console.info(`listening at ${server.address().port}`)
+  console.info(`listening at ${server.address().port}`)
 })
