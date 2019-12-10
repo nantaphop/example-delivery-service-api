@@ -10,3 +10,15 @@ services:
       ports: 
         - 3088:3088
       command: npm run start:dev
+    mongo:
+      image: mongo:4-xenial
+      restart: always
+      environment:
+        MONGO_INITDB_ROOT_USERNAME: root
+        MONGO_INITDB_ROOT_PASSWORD: password
+      volumes: 
+        - ./.db:/data/db
+      ports: 
+        - 22222:27017
+      logging:
+        driver: none

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "start:dev": "nodemon index.js",
+    "start:dev": "nodemon --ignore .db index.js",
     "test": "jest",
     "test:watch": "jest --watchAll"
   },
@@ -13,7 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^8.2.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.8.0"
   },
   "devDependencies": {
     "jest": "^24.9.0",
