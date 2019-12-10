@@ -14,6 +14,9 @@ app.use(bodyParser.json())
 require('./src/controllers/system/register')(app)
 require('./src/controllers/auth/register')(app)
 
+// Config Error Middleware
+app.use(require('./src/middlewares/error-handler'))
+
 console.info('Connecting to Mongodb')
 const mongoOpts = { useNewUrlParser: true, useUnifiedTopology: true }
 mongoose.connect(MONGO_CONNECTION, mongoOpts, err => {
