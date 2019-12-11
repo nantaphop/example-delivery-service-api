@@ -30,6 +30,9 @@ app.use(bodyParser.json())
 require('./src/controllers/system/register')(app)
 require('./src/controllers/auth/register')(app)
 
+// Config admin route handlers
+require('./src/controllers/admin/users/register')(app)
+
 // Config Error Middleware
 app.use(require('./src/middlewares/error-handler'))
 
