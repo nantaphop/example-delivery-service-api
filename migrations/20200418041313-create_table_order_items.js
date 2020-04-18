@@ -3,8 +3,13 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('order_items', {
-      id: Sequelize.DataTypes.INTEGER,
+      id: {
+        type: Sequelize.DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+      },
       createdAt: Sequelize.DataTypes.DATE,
+      updatedAt: Sequelize.DataTypes.DATE,
       item: Sequelize.DataTypes.STRING,
       quantity: Sequelize.DataTypes.INTEGER,
       orderId: {

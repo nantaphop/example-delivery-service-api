@@ -9,7 +9,8 @@ module.exports = {
         autoIncrement: true
       },
       createdBy: Sequelize.DataTypes.STRING,
-      createdAt: Sequelize.DataTypes.DATE
+      createdAt: Sequelize.DataTypes.DATE,
+      updatedAt: Sequelize.DataTypes.DATE
     })
   },
 

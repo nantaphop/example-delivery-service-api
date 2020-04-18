@@ -18,6 +18,9 @@ const app = express()
 const PORT = config.server.port
 
 async function bootstrap() {
+  await mongodb.connect()
+  await postgres.connect()
+
   // Config Passport
   passport.use(
     new JwtStrategy(
@@ -39,11 +42,11 @@ async function bootstrap() {
   // Config admin route handlers
   require('./src/controllers/admin/users/register')(app)
 
+  // Config other route
+  require('./src/controllers/orders/register')(app)
+
   // Config Error Middleware
   app.use(require('./src/middlewares/error-handler'))
-
-  await mongodb.connect()
-  await postgres.connect()
 
   const server = app.listen(PORT, () => {
     logger.info(`listening at ${server.address().port}`)
