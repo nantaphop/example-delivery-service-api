@@ -5,6 +5,8 @@ const bodyParser = require('body-parser')
 const passport = require('passport')
 const JwtStrategy = require('passport-jwt').Strategy
 const ExtractJwt = require('passport-jwt').ExtractJwt
+const glob = require('glob')
+const path = require('path')
 
 const config = require('./src/config')
 const mongodb = require('./src/libs/mongodb')
@@ -36,14 +38,21 @@ async function bootstrap() {
   app.use(bodyParser.json())
 
   // Config route handlers
-  require('./src/controllers/system/register')(app)
-  require('./src/controllers/auth/register')(app)
 
-  // Config admin route handlers
-  require('./src/controllers/admin/users/register')(app)
-
-  // Config other route
-  require('./src/controllers/orders/register')(app)
+  const controllerRegisters = glob.sync('**/controllers/**/register.js')
+  controllerRegisters.forEach(register => {
+    logger.info(`Register controller: ${register}`)
+    require(path.resolve(register))(app)
+  })
+  app._router.stack.forEach(function(r) {
+    if (r.route && r.route.path) {
+      logger.info(
+        `Available Route: ${Object.keys(r.route.methods)
+          .map(s => s.toUpperCase())
+          .join('|')} ${r.route.path}`
+      )
+    }
+  })
 
   // Config Error Middleware
   app.use(require('./src/middlewares/error-handler'))
