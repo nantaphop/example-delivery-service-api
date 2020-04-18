@@ -9,7 +9,10 @@
     "wsl:start:mongodb": "sudo mongod --dbpath ~/data/db",
     "wsl:start:postgres": "sudo service postgresql start",
     "test": "jest",
-    "test:watch": "jest --watchAll"
+    "test:watch": "jest --watchAll",
+    "migration:generate": "npx sequelize-cli migration:generate",
+    "db:migrate": "npx sequelize-cli db:migrate",
+    "db:migrate:undo": "npx sequelize-cli db:migrate:undo"
   },
   "author": "",
   "license": "ISC",
@@ -40,6 +43,7 @@
     "mongodb-memory-server": "^6.0.2",
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",
+    "sequelize-cli": "^5.5.1",
     "sinon": "^7.5.0"
   }
 }

@@ -7,7 +7,11 @@ module.exports = {
       url: process.env.MONGO_CONNECTION
     },
     postgres: {
-      url: process.env.POSTGRES_CONNECTION
+      username: process.env.POSTGRES_USERNAME,
+      password: process.env.POSTGRES_PASSWORD,
+      database: process.env.POSTGRES_DB,
+      host: process.env.POSTGRES_HOST,
+      port: process.env.POSTGRES_PORT
     }
   },
   security: {
