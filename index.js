@@ -10,6 +10,7 @@ const config = require('./src/config')
 const mongodb = require('./src/libs/mongodb')
 const postgres = require('./src/libs/postgres')
 
+const logger = require('./src/libs/logger')
 const jwtTokenHandler = require('./src/domains/auth/jwt-token-handler')
 
 const app = express()
@@ -45,7 +46,7 @@ async function bootstrap() {
   await postgres.connect()
 
   const server = app.listen(PORT, () => {
-    console.info(`listening at ${server.address().port}`)
+    logger.info(`listening at ${server.address().port}`)
   })
 }
 

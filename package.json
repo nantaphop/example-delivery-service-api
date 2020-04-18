@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node index.js",
     "start:dev": "nodemon --ignore .db index.js",
-    "start:mongodb": "sudo mongod --dbpath ~/data/db",
+    "wsl:start:mongodb": "sudo mongod --dbpath ~/data/db",
+    "wsl:start:postgres": "sudo service postgresql start",
     "test": "jest",
     "test:watch": "jest --watchAll"
   },
@@ -30,7 +31,8 @@
     "passport-jwt": "^4.0.0",
     "pg": "^8.0.2",
     "pg-hstore": "^2.3.3",
-    "sequelize": "^5.21.6"
+    "sequelize": "^5.21.6",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "husky": "^3.1.0",
