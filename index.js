@@ -8,6 +8,8 @@ const ExtractJwt = require('passport-jwt').ExtractJwt
 
 const config = require('./src/config')
 const mongodb = require('./src/libs/mongodb')
+const postgres = require('./src/libs/postgres')
+
 const jwtTokenHandler = require('./src/domains/auth/jwt-token-handler')
 
 const app = express()
@@ -40,6 +42,7 @@ async function bootstrap() {
   app.use(require('./src/middlewares/error-handler'))
 
   await mongodb.connect()
+  await postgres.connect()
 
   const server = app.listen(PORT, () => {
     console.info(`listening at ${server.address().port}`)
